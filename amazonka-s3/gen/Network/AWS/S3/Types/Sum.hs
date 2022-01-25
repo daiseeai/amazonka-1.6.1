@@ -684,6 +684,7 @@ data ObjectStorageClass
   | OSCReducedRedundancy
   | OSCStandard
   | OSCStandardIA
+  | OSCIntelligentTiering
   deriving (Eq, Ord, Read, Show, Enum, Bounded, Data, Typeable, Generic)
 
 
@@ -693,6 +694,7 @@ instance FromText ObjectStorageClass where
         "reduced_redundancy" -> pure OSCReducedRedundancy
         "standard" -> pure OSCStandard
         "standard_ia" -> pure OSCStandardIA
+        "intelligent_tiering" -> pure OSCIntelligentTiering
         e -> fromTextError $ "Failure parsing ObjectStorageClass from value: '" <> e
            <> "'. Accepted values: glacier, reduced_redundancy, standard, standard_ia"
 
@@ -702,6 +704,7 @@ instance ToText ObjectStorageClass where
         OSCReducedRedundancy -> "REDUCED_REDUNDANCY"
         OSCStandard -> "STANDARD"
         OSCStandardIA -> "STANDARD_IA"
+        OSCIntelligentTiering -> "INTELLIGENT_TIERING"
 
 instance Hashable     ObjectStorageClass
 instance NFData       ObjectStorageClass
