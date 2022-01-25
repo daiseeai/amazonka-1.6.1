@@ -1091,6 +1091,7 @@ data StorageClass
   | ReducedRedundancy
   | Standard
   | StandardIA
+  | IntelligentTiering
   deriving (Eq, Ord, Read, Show, Enum, Bounded, Data, Typeable, Generic)
 
 
@@ -1100,6 +1101,7 @@ instance FromText StorageClass where
         "reduced_redundancy" -> pure ReducedRedundancy
         "standard" -> pure Standard
         "standard_ia" -> pure StandardIA
+        "intelligent_tiering" -> pure IntelligentTiering
         e -> fromTextError $ "Failure parsing StorageClass from value: '" <> e
            <> "'. Accepted values: onezone_ia, reduced_redundancy, standard, standard_ia"
 
@@ -1109,6 +1111,7 @@ instance ToText StorageClass where
         ReducedRedundancy -> "REDUCED_REDUNDANCY"
         Standard -> "STANDARD"
         StandardIA -> "STANDARD_IA"
+        IntelligentTiering -> "INTELLIGENT_TIERING"
 
 instance Hashable     StorageClass
 instance NFData       StorageClass
