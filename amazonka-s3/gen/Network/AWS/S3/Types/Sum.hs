@@ -685,6 +685,7 @@ data ObjectStorageClass
   | OSCStandard
   | OSCStandardIA
   | OSCIntelligentTiering
+  | OSCGlacierIR
   deriving (Eq, Ord, Read, Show, Enum, Bounded, Data, Typeable, Generic)
 
 
@@ -695,6 +696,7 @@ instance FromText ObjectStorageClass where
         "standard" -> pure OSCStandard
         "standard_ia" -> pure OSCStandardIA
         "intelligent_tiering" -> pure OSCIntelligentTiering
+        "glacier_ir" -> pure OSCGlacierIR
         e -> fromTextError $ "Failure parsing ObjectStorageClass from value: '" <> e
            <> "'. Accepted values: glacier, reduced_redundancy, standard, standard_ia"
 
@@ -705,6 +707,7 @@ instance ToText ObjectStorageClass where
         OSCStandard -> "STANDARD"
         OSCStandardIA -> "STANDARD_IA"
         OSCIntelligentTiering -> "INTELLIGENT_TIERING"
+        OSCGlacierIR -> "GLACIER_IR"
 
 instance Hashable     ObjectStorageClass
 instance NFData       ObjectStorageClass
@@ -1095,6 +1098,7 @@ data StorageClass
   | Standard
   | StandardIA
   | IntelligentTiering
+  | GlacierIR
   deriving (Eq, Ord, Read, Show, Enum, Bounded, Data, Typeable, Generic)
 
 
@@ -1105,6 +1109,7 @@ instance FromText StorageClass where
         "standard" -> pure Standard
         "standard_ia" -> pure StandardIA
         "intelligent_tiering" -> pure IntelligentTiering
+        "glacier_ir" -> pure GlacierIR
         e -> fromTextError $ "Failure parsing StorageClass from value: '" <> e
            <> "'. Accepted values: onezone_ia, reduced_redundancy, standard, standard_ia"
 
@@ -1115,6 +1120,7 @@ instance ToText StorageClass where
         Standard -> "STANDARD"
         StandardIA -> "STANDARD_IA"
         IntelligentTiering -> "INTELLIGENT_TIERING"
+        GlacierIR -> "GLACIER_IR"
 
 instance Hashable     StorageClass
 instance NFData       StorageClass
